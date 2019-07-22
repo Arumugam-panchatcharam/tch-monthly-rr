@@ -16,16 +16,17 @@ var pusher = new Pusher({
   encrypted: keys.pusherEncrypted
 });
 
+
 router.get("/", (req, res) => {
   Vote.find().then(votes => res.json({ success: true, votes: votes }));
 });
 
 router.post("/", (req, res) => {
   const newVote = {
-    contirb: req.body.contrib,
+    contrib: req.body.contrib,
     points: 1
   };
-
+    
   new Vote(newVote).save().then(vote => {
     pusher.trigger("contrib-poll", "contrib-vote", {
       points: parseInt(vote.points),
@@ -34,6 +35,11 @@ router.post("/", (req, res) => {
 
     return res.json({ success: true, message: "Thank you for voting" });
   });
+});
+
+router.post("/drop", (req, res) => {
+    Vote.collection.drop();
+    return res.json({ success: true, message: "All records Deleted successfully" });
 });
 
 module.exports = router;
