@@ -95,7 +95,7 @@ drop_db_entry.addEventListener('click', e=>{
 form.addEventListener('submit', e=>{
     
     const choice = document.querySelector('input[name=contrib]:checked').value;
-    const data = {contrib: choice};
+    const data = {contrib: choice}; 
 
     fetch('https://tch-monthly-rr-new.run.goorm.io/poll',{
         method: 'post',
