@@ -6,7 +6,8 @@ drop_db_entry.addEventListener('click', e=>{
     const data = {delete: 1};
     if(confirm("Please confirm Drop all votes?")){
         console.log("drop all called");
-        fetch('https://tch-monthly-rr-new.run.goorm.io/poll/drop',{
+        //fetch('https://tch-monthly-rr-new.run.goorm.io/poll/drop',{
+        fetch('https://tch-monthly-rr.herokuapp.com/poll/drop',{
         method: 'post',
         body: JSON.stringify(data),
         headers: new Headers({
@@ -15,7 +16,8 @@ drop_db_entry.addEventListener('click', e=>{
     }).then(res => res.json())
     .catch(err => console.log(err));
         
-        fetch("https://tch-monthly-rr-new.run.goorm.io/poll")
+        //fetch("https://tch-monthly-rr-new.run.goorm.io/poll")
+        fetch('https://tch-monthly-rr.herokuapp.com/poll')
     .then(res => res.json())
     .then(data => {
         let votes = data.votes;
@@ -97,7 +99,8 @@ form.addEventListener('submit', e=>{
     const choice = document.querySelector('input[name=contrib]:checked').value;
     const data = {contrib: choice}; 
 
-    fetch('https://tch-monthly-rr-new.run.goorm.io/poll',{
+    //fetch('https://tch-monthly-rr-new.run.goorm.io/poll',{
+    fetch('https://tch-monthly-rr.herokuapp.com/poll',{
         method: 'post',
         body: JSON.stringify(data),
         headers: new Headers({
@@ -108,7 +111,8 @@ form.addEventListener('submit', e=>{
 
     e.preventDefault();
     
-    fetch("https://tch-monthly-rr-new.run.goorm.io/poll")
+    //fetch("https://tch-monthly-rr-new.run.goorm.io/poll")
+    fetch('https://tch-monthly-rr.herokuapp.com/poll')
     .then(res => res.json())
     .then(data => {
         let votes = data.votes;
@@ -179,7 +183,8 @@ form.addEventListener('submit', e=>{
 });
 });
 
-fetch("https://tch-monthly-rr-new.run.goorm.io/poll")
+//fetch("https://tch-monthly-rr-new.run.goorm.io/poll")
+fetch('https://tch-monthly-rr.herokuapp.com/poll')
     .then(res => res.json())
     .then(data => {
         let votes = data.votes;
